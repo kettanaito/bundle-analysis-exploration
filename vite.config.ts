@@ -3,6 +3,8 @@ import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { codecovRemixVitePlugin } from '@codecov/remix-vite-plugin'
 
+console.log(process.env.CODECOV_TOKEN)
+
 declare module '@remix-run/node' {
   interface Future {
     v3_singleFetch: true
@@ -22,6 +24,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
     codecovRemixVitePlugin({
+      debug: true,
       enableBundleAnalysis: true,
       bundleName: 'example-remix-bundle',
       uploadToken: process.env.CODECOV_TOKEN,
